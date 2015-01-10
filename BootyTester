@@ -1,0 +1,18 @@
+local myinspectunit
+local f = CreateFrame("Frame")
+
+f:SetScript("OnEvent", function(self,event,unit)
+ if unit == myinspectunit then
+ f:UnregisterEvent("INSPECT_READY")
+ local primary_talent_tab_id = GetPrimaryTalentTree(true)
+ _, primary_talent = GetTalentTabInfo(primary_talent_tab_id, true)
+ print(UnitName("target").."'s primary talent: "..primary_talent)
+ end
+ end)
+
+SLASH_INSPECTTEST1 = "/it"
+SlashCmdList["INSPECTTEST"] = function()
+ myinspectunit = UnitGUID("target")
+ NotifyInspect("target")
+ f:RegisterEvent("INSPECT_READY")
+ end
