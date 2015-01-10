@@ -1,0 +1,6 @@
+## Interface: 60000
+## Title: BootyTester
+## Author: Ökko and DominoAfekt
+## Version
+## Notes: This thing is going to rock!
+BootyTester.lua
