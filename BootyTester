@@ -1,18 +1,22 @@
 local myinspectunit
-local f = CreateFrame("Frame")
+local f = CreateFrame("Frame",nil, nil)
 
 f:SetScript("OnEvent", function(self,event,unit)
  if unit == myinspectunit then
- f:UnregisterEvent("INSPECT_READY")
- local primary_talent_tab_id = GetPrimaryTalentTree(true)
- _, primary_talent = GetTalentTabInfo(primary_talent_tab_id, true)
- print(UnitName("target").."'s primary talent: "..primary_talent)
+ 	f:UnregisterEvent("INSPECT_READY")
+ 	for items = 1, 17, 1 do
+ 		--local slotter = GetInventoryItemID("target",items)
+ 		local itemName, _, _, itemLevel = GetItemInfo(GetInventoryItemID("target", items))
+ 		if itemName == nil then break
+ 		end
+ 		print("" .. itemName .." is level " .. itemLevel)
+ 	end
  end
- end)
+end)
 
-SLASH_INSPECTTEST1 = "/it"
-SlashCmdList["INSPECTTEST"] = function()
+SLASH_BOOTYTEST1 = "/booty"
+SlashCmdList["BOOTYTEST"] = function()
  myinspectunit = UnitGUID("target")
  NotifyInspect("target")
  f:RegisterEvent("INSPECT_READY")
- end
+end
