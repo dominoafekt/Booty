@@ -5,7 +5,10 @@ f:SetScript("OnEvent", function(self,event,unit)
  if unit == myinspectunit then
  	f:UnregisterEvent("INSPECT_READY")
  	for items = 1, 17, 1 do
+ 	
+ 		--this was an extra step between GetInventoryItemID and GetItem Info.
  		--local slotter = GetInventoryItemID("target",items)
+ 		
  		local itemName, _, _, itemLevel = GetItemInfo(GetInventoryItemID("target", items))
  		print("" .. itemName .." is level " .. itemLevel)
  	end
