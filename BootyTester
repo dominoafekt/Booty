@@ -7,8 +7,6 @@ f:SetScript("OnEvent", function(self,event,unit)
  	for items = 1, 17, 1 do
  		--local slotter = GetInventoryItemID("target",items)
  		local itemName, _, _, itemLevel = GetItemInfo(GetInventoryItemID("target", items))
- 		if itemName == nil then break
- 		end
  		print("" .. itemName .." is level " .. itemLevel)
  	end
  end
